@@ -1,0 +1,40 @@
+Original URL: https://gemini.google.com/app/09d4570e98b0a160
+
+**[USER]**
+I need an assistant to help me use the Total Commander v11.56 Multi-Rename Tool.  I want to change filenames from (1-name.txt) to (01-name.txt).  The script should be able to rename n number of files.
+
+**[ASSISTANT]**
+### Method: Regular Expressions (RegEx)
+
+This method adds a leading zero only to files starting with a single digit (e.g., `1-` becomes `01-`) while leaving double-digit files (e.g., `10-`) untouched.
+
+1.  **Select** the files you want to rename in Total Commander.
+    
+2.  Press **Ctrl + M** to open the Multi-Rename Tool.
+    
+3.  **Check** the box labeled `RegEx` (usually on the right side).
+    
+4.  Enter the following values into the search fields:
+    
+
+| Field | Value | Function |
+| --- | --- | --- |
+| Search for: | ^(\d)- | Finds a single digit at the start of the name followed by a hyphen. |
+| Replace with: | 0$1- | Adds a zero, then restores the original digit and hyphen. |
+
+> **Note on Parentheses:** If your filenames literally contain parentheses (e.g., `(1-name.txt)`), change the **Search for** string to `^\((\d)-` and **Replace with** to `(0$1-`.
+
+### Verification
+
+-   Look at the **New Name** column in the preview window.
+    
+-   Ensure `1-name.txt` shows as `01-name.txt`.
+    
+-   Ensure `10-name.txt` remains `10-name.txt`.
+    
+-   Click **Start!** to apply the changes.
+    
+
+* * *
+
+Do these files follow a strict sequential order (1, 2, 3...), or are there gaps in the numbering that I should account for?
